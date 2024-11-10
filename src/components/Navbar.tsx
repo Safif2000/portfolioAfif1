@@ -33,8 +33,9 @@ const Navbar = () => {
   }, []); // Empty dependency array ensures this effect runs only once
 
   // Smooth scroll function
-  const handleScrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
+  const handleScrollToSection = (sectionId: string): void => {
+    const element = document.getElementById(sectionId) as HTMLElement | null; // Ensure it's an HTMLElement or null
+  
     if (element) {
       element.scrollIntoView({
         behavior: 'smooth', // Smooth scrolling effect
@@ -42,7 +43,7 @@ const Navbar = () => {
       });
     }
   };
-
+  
   return (
     <nav id="navbar" className="bg-transparent absolute top-0 left-0 right-0 z-30 transition-all duration-300 ease-in-out">
       <div className="container mx-auto flex items-center justify-between px-4 py-5">

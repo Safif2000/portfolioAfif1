@@ -39,21 +39,23 @@ const AboutMe = () => {
     const animateSkillProgress = () => {
       const progressBars = document.querySelectorAll('.progress-bar');
       progressBars.forEach((bar) => {
-        const target = bar.dataset.level;
+        const target = parseInt(bar.getAttribute('data-level') || '0', 10); // Ensure the target is a number
         let progress = 0;
+  
         const interval = setInterval(() => {
           if (progress < target) {
             progress += 1;
-            bar.style.width = `${progress}%`;
+            (bar as HTMLElement).style.width = `${progress}%`;  // Use .style.width to modify the inline style
           } else {
             clearInterval(interval);
           }
         }, 10);
       });
     };
-
+  
     animateSkillProgress();
   }, []);
+  
 
   // Animate the "Projects Completed" counter
   useEffect(() => {
