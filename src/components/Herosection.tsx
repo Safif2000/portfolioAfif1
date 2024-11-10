@@ -22,18 +22,18 @@ const Herosection = () => {
     }, 200); // Adjust typing speed here (200ms)
 
     return () => clearInterval(typingInterval); // Cleanup the interval when component unmounts
-  }, [typingText, currentWordIndex]);
+  }, [typingText, currentWordIndex, typingTexts]); // Added typingTexts to dependencies
 
   return (
     <section className="text-gray-600 body-font bg-[#292524] ">
-      <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-start"> {/* Change from items-center to items-start */}
-        <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start mb-16 md:mb-0 text-left"> {/* Ensure text is left aligned */}
+      <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-start">
+        <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start mb-16 md:mb-0 text-left">
           <div className="text text-white">
             <span className="subheading text-lg">Hello!</span>
             <h1 className="mb-4 mt-3 text-4xl font-semibold">
               I'm <span className="text-primary">Syed Muhammad Afif</span>
             </h1>
-            
+
             <span id="typing-animation" className="text-2xl font-light">
               {typingText}
             </span>
@@ -41,7 +41,7 @@ const Herosection = () => {
             <h2 className="text-xl mt-4">Front-end developer</h2>
           </div>
 
-          <div className="flex justify-start mt-8"> {/* Align button to the left */}
+          <div className="flex justify-start mt-8">
             <button
               className="inline-flex text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg rounded-sm"
               onClick={() => {

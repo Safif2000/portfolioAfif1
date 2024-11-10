@@ -32,7 +32,7 @@ const AboutMe = () => {
     }, 200);
 
     return () => clearInterval(typingInterval);
-  }, [currentWordIndex]); // Only depend on currentWordIndex
+  }, [currentWordIndex, typingText.length, typingTexts]); // Added missing dependencies
 
   // Animate the skill progress bars
   useEffect(() => {
