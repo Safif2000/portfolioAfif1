@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import profileImage from '../app/images/profile.jpg';
@@ -25,27 +26,27 @@ const AboutMe = () => {
       } else {
         clearInterval(typingInterval);
         setTimeout(() => {
-          setTypingText(''); // Clear the text
-          setCurrentWordIndex((prev) => (prev + 1) % typingTexts.length); // Change to the next word
+          setTypingText('');
+          setCurrentWordIndex((prev) => (prev + 1) % typingTexts.length);
         }, 1000);
       }
     }, 200);
 
     return () => clearInterval(typingInterval);
-  }, [currentWordIndex]); // Only depend on currentWordIndex
+  }, [currentWordIndex, typingText]); // Added typingText as a dependency
 
   // Animate the skill progress bars
   useEffect(() => {
     const animateSkillProgress = () => {
       const progressBars = document.querySelectorAll('.progress-bar');
       progressBars.forEach((bar) => {
-        const target = parseInt(bar.getAttribute('data-level') || '0', 10); // Ensure the target is a number
+        const target = parseInt(bar.getAttribute('data-level') || '0', 10);
         let progress = 0;
 
         const interval = setInterval(() => {
           if (progress < target) {
             progress += 1;
-            (bar as HTMLElement).style.width = `${progress}%`;  // Use .style.width to modify the inline style
+            (bar as HTMLElement).style.width = `${progress}%`;
           } else {
             clearInterval(interval);
           }
@@ -54,7 +55,7 @@ const AboutMe = () => {
     };
 
     animateSkillProgress();
-  }, []);
+  }, []); // This runs once on mount
 
   // Animate the "Projects Completed" counter
   useEffect(() => {
@@ -68,7 +69,9 @@ const AboutMe = () => {
         clearInterval(interval);
       }
     }, 50); // Adjust speed here for faster or slower animation
-  }, []);
+
+    return () => clearInterval(interval);
+  }, []); // This runs once on mount
 
   return (
     <section className="bg-[#292524] py-12" id="about-section">
@@ -168,7 +171,6 @@ const AboutMe = () => {
                 LINKEDIN
               </a>
             </div>
-
           </div>
         </div>
 

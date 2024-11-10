@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from 'react';
 
 const Herosection = () => {
@@ -17,11 +18,11 @@ const Herosection = () => {
         setTimeout(() => {
           setTypingText(''); // Clear the text after a short delay
           setCurrentWordIndex((prev) => (prev + 1) % typingTexts.length); // Move to the next word
-        }, 1000); // Pause after finishing typing before moving to the next word
+        }, 1000); 
       }
-    }, 200); // Adjust typing speed here (200ms)
+    }, 200); 
 
-    return () => clearInterval(typingInterval); // Cleanup the interval when component unmounts
+    return () => clearInterval(typingInterval); 
   }, [typingText, currentWordIndex]);
 
   return (
