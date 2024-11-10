@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import profileImage from '../app/images/profile.jpg';  // Correct import
+import profileImage from '../app/images/profile.jpg';
 
 const AboutMe = () => {
   const [typingText, setTypingText] = useState('');
@@ -25,15 +25,15 @@ const AboutMe = () => {
       } else {
         clearInterval(typingInterval);
         setTimeout(() => {
-          setTypingText('');
-          setCurrentWordIndex((prev) => (prev + 1) % typingTexts.length);
+          setTypingText(''); // Clear the text
+          setCurrentWordIndex((prev) => (prev + 1) % typingTexts.length); // Change to the next word
         }, 1000);
       }
     }, 200);
-  
+
     return () => clearInterval(typingInterval);
-  }, [typingText, currentWordIndex, typingTexts]);  // typingTexts added in dependency array
-  
+  }, [currentWordIndex]); // Only depend on currentWordIndex
+
   // Animate the skill progress bars
   useEffect(() => {
     const animateSkillProgress = () => {
@@ -41,7 +41,7 @@ const AboutMe = () => {
       progressBars.forEach((bar) => {
         const target = parseInt(bar.getAttribute('data-level') || '0', 10); // Ensure the target is a number
         let progress = 0;
-  
+
         const interval = setInterval(() => {
           if (progress < target) {
             progress += 1;
@@ -52,10 +52,9 @@ const AboutMe = () => {
         }, 10);
       });
     };
-  
+
     animateSkillProgress();
   }, []);
-  
 
   // Animate the "Projects Completed" counter
   useEffect(() => {
@@ -120,59 +119,58 @@ const AboutMe = () => {
 
         {/* About Me Section */}
         <div className="w-full md:w-1/2 lg:w-3/5 p-4 mx-auto">
-  <div className="text-white">
-    <h1 className="text-5xl font-bold text-gray-300 relative mb-6">
-      <span className="absolute opacity-10 top-0 left-0">About</span>
-      <span className="relative text-white">About Me</span>
-    </h1>
-    <p className="text-gray-300 mb-6">
-      With 1 year of hands-on experience in front-end development, accompanied by a strong foundation in web technologies. Proficient in HTML, CSS, JavaScript, and modern frameworks like React. Demonstrated success in building responsive websites, optimizing user experiences, and collaborating effectively in team-driven projects.
-    </p>
-    <ul className="space-y-4 text-sm">
-  <li className="flex flex-col md:flex-row items-start">
-    <span className="font-semibold w-full md:w-1/3">Profile:</span>
-    <span className="w-full md:w-2/3">Front-end Developer</span>
-  </li>
-  <li className="flex flex-col md:flex-row items-start">
-    <span className="font-semibold w-full md:w-1/3">Domain:</span>
-    <span className="w-full md:w-2/3">Retail, Ecommerce, BFSI & Digital Marketing</span>
-  </li>
-  <li className="flex flex-col md:flex-row items-start">
-    <span className="font-semibold w-full md:w-1/3">Education:</span>
-    <span className="w-full md:w-2/3">Software Engineering</span>
-  </li>
-  <li className="flex flex-col md:flex-row items-start">
-    <span className="font-semibold w-full md:w-1/3">Language:</span>
-    <span className="w-full md:w-2/3">English, Urdu</span>
-  </li>
-  <li className="flex flex-col md:flex-row items-start">
-    <span className="font-semibold w-full md:w-1/3">Other Skills:</span>
-    <span className="w-full md:w-2/3">HTML, CSS, JavaScript, Bootstrap, TypeScript, Next.js</span>
-  </li>
-  <li className="flex flex-col md:flex-row items-start">
-    <span className="font-semibold w-full md:w-1/3">Interests:</span>
-    <span className="w-full md:w-2/3">Traveling, Travel Photography, Teaching, Coding</span>
-  </li>
-</ul>
+          <div className="text-white">
+            <h1 className="text-5xl font-bold text-gray-300 relative mb-6">
+              <span className="absolute opacity-10 top-0 left-0">About</span>
+              <span className="relative text-white">About Me</span>
+            </h1>
+            <p className="text-gray-300 mb-6">
+              With 1 year of hands-on experience in front-end development, accompanied by a strong foundation in web technologies. Proficient in HTML, CSS, JavaScript, and modern frameworks like React. Demonstrated success in building responsive websites, optimizing user experiences, and collaborating effectively in team-driven projects.
+            </p>
+            <ul className="space-y-4 text-sm">
+              <li className="flex flex-col md:flex-row items-start">
+                <span className="font-semibold w-full md:w-1/3">Profile:</span>
+                <span className="w-full md:w-2/3">Front-end Developer</span>
+              </li>
+              <li className="flex flex-col md:flex-row items-start">
+                <span className="font-semibold w-full md:w-1/3">Domain:</span>
+                <span className="w-full md:w-2/3">Retail, Ecommerce, BFSI & Digital Marketing</span>
+              </li>
+              <li className="flex flex-col md:flex-row items-start">
+                <span className="font-semibold w-full md:w-1/3">Education:</span>
+                <span className="w-full md:w-2/3">Software Engineering</span>
+              </li>
+              <li className="flex flex-col md:flex-row items-start">
+                <span className="font-semibold w-full md:w-1/3">Language:</span>
+                <span className="w-full md:w-2/3">English, Urdu</span>
+              </li>
+              <li className="flex flex-col md:flex-row items-start">
+                <span className="font-semibold w-full md:w-1/3">Other Skills:</span>
+                <span className="w-full md:w-2/3">HTML, CSS, JavaScript, Bootstrap, TypeScript, Next.js</span>
+              </li>
+              <li className="flex flex-col md:flex-row items-start">
+                <span className="font-semibold w-full md:w-1/3">Interests:</span>
+                <span className="w-full md:w-2/3">Traveling, Travel Photography, Teaching, Coding</span>
+              </li>
+            </ul>
 
-    
-    {/* Projects completed and LinkedIn Button */}
-    <div className="mt-10 flex flex-col md:flex-row items-center">
-  <span className="font-bold text-yellow-500 text-xl mr-0 md:mr-4 mb-4 md:mb-0">
-    {projectsCompleted} + Projects completed
-  </span>
-  <a
-  href="https://www.linkedin.com/in/syed-afif/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="bg-yellow-500 text-black px-4 py-2 rounded-full font-semibold transform transition duration-300 hover:scale-105"
->
-  LINKEDIN
-</a>
-</div>
+            {/* Projects completed and LinkedIn Button */}
+            <div className="mt-10 flex flex-col md:flex-row items-center">
+              <span className="font-bold text-yellow-500 text-xl mr-0 md:mr-4 mb-4 md:mb-0">
+                {projectsCompleted} + Projects completed
+              </span>
+              <a
+                href="https://www.linkedin.com/in/syed-afif/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-yellow-500 text-black px-4 py-2 rounded-full font-semibold transform transition duration-300 hover:scale-105"
+              >
+                LINKEDIN
+              </a>
+            </div>
 
-  </div>
-</div>
+          </div>
+        </div>
 
       </div>
     </section>
