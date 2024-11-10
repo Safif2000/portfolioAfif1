@@ -30,10 +30,10 @@ const AboutMe = () => {
         }, 1000);
       }
     }, 200);
-
+  
     return () => clearInterval(typingInterval);
-  }, [typingText, currentWordIndex]);
-
+  }, [typingText, currentWordIndex, typingTexts]);  // typingTexts added in dependency array
+  
   // Animate the skill progress bars
   useEffect(() => {
     const animateSkillProgress = () => {
